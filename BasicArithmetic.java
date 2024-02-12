@@ -302,7 +302,7 @@ public class BasicArithmetic<T>{
         BasicArithmetic<Double> doubleList = new BasicArithmetic<>();
         boolean loop = true;
         while (loop) {
-            System.out.print("Enter a number (type 'next' to proceed): ");
+            System.out.print("Enter a number (type 'next' to proceed or 'exit' to quit): ");
             if (scan.hasNextInt()) {
                 int a = scan.nextInt();
                 integerList.add(a);
@@ -316,7 +316,11 @@ public class BasicArithmetic<T>{
                 if (a.equalsIgnoreCase("next")) {
                     loop = false;
                     continue;
-                } else {
+                } else if (a.equalsIgnoreCase("exit")) {
+                    loop = false;
+                    System.exit(0);
+                }
+                else {
                         System.out.println("Invalid input. Please try again.");
                 }
             }
