@@ -1,33 +1,10 @@
 import java.util.Scanner;
-import java.util.InputMismatchException;
 import java.util.ArrayList;
 
 public class BasicArithmetic<T>{
     static Scanner scan = new Scanner(System.in);
     private ArrayList<T> list;
 
-    public BasicArithmetic() {
-        list = new ArrayList<>();
-    }
-
-    public void add(T element) {
-    /**
-     * Adds the specified element to the list.
-     *
-     * @param element   the element to be added to the list
-     */
-        list.add(element);
-    }
-
-    public T get(int index) {
-    /**
-     * Retrieves the element at the specified index.
-     *
-     * @param index     the index of the element to retrieve
-     * @return          the element at the specified index
-     */
-        return list.get(index);
-    }
 
     public static int add(int a, int b) {
     /**
@@ -264,6 +241,30 @@ public class BasicArithmetic<T>{
         return quotient;
     }
 
+    public BasicArithmetic() {
+        list = new ArrayList<>();
+    }
+
+    public void add(T element) {
+    /**
+     * Adds the specified element to the list.
+     *
+     * @param element   the element to be added to the list
+     */
+        list.add(element);
+    }
+
+    public T get(int index) {
+    /**
+     * Retrieves the element at the specified index.
+     *
+     * @param index     the index of the element to retrieve
+     * @return          the element at the specified index
+     */
+        return list.get(index);
+    }
+
+
     public static boolean isIntArray(ArrayList<?> list) {
     /**
      * Checks if the given ArrayList contains only Integer objects.
@@ -297,17 +298,11 @@ public class BasicArithmetic<T>{
     
 
     public static void main(String[] args) {
-    /**
-     * The main method to perform basic arithmetic operations on integer and double lists.
-     *
-     * @param args    the command-line arguments
-     * @return        void
-     */        
         BasicArithmetic<Integer> integerList = new BasicArithmetic<>();
         BasicArithmetic<Double> doubleList = new BasicArithmetic<>();
         boolean loop = true;
         while (loop) {
-            System.out.print("Enter a number (type 'quit' to proceed): ");
+            System.out.print("Enter a number (type 'next' to proceed): ");
             if (scan.hasNextInt()) {
                 int a = scan.nextInt();
                 integerList.add(a);
@@ -317,25 +312,20 @@ public class BasicArithmetic<T>{
                 doubleList.add(a);
                 System.out.println("Current list: " + doubleList.list);
             } else if (scan.hasNextLine()) {
-                String a = scan.nextLine();
-                if (a.equalsIgnoreCase("quit")) {
+                String a = scan.next();
+                if (a.equalsIgnoreCase("next")) {
                     loop = false;
-                    break;
+                    continue;
                 } else {
-                    try {
-                        throw new InputMismatchException();
-                    } catch (InputMismatchException e) {
                         System.out.println("Invalid input. Please try again.");
-                    }
                 }
             }
         }
         if (integerList.list.size() < 3 && !integerList.list.isEmpty()) {
-            System.out.println("\nFinal list: " + integerList.list);
-            System.out.println("Sum: " + add(integerList.list.get(0), integerList.list.get(1)));
-            System.out.println("Difference: " + subtract(integerList.list.get(0), integerList.list.get(1)));
-            System.out.println("Product: " + multiply(integerList.list.get(0), integerList.list.get(1)));
-            System.out.println("Quotient: " + divide(integerList.list.get(0), integerList.list.get(1))); 
+            System.out.println("Sum of " + integerList.list.get(0) + " and " + integerList.list.get(1) + " is : " + add(integerList.list.get(0), integerList.list.get(1)));
+            System.out.println("Difference of " + integerList.list.get(0) + " and " + integerList.list.get(1) + " is: " + subtract(integerList.list.get(0), integerList.list.get(1)));
+            System.out.println("Product of " + integerList.list.get(0) + " and " + integerList.list.get(1) + " is: " + multiply(integerList.list.get(0), integerList.list.get(1)));
+            System.out.println("Quotient of " + integerList.list.get(0) + " and " + integerList.list.get(1) + " is: " + divide(integerList.list.get(0), integerList.list.get(1))); 
         } else if (integerList.list.size() >= 3 && isIntArray(integerList.list)) {
             System.out.println("\n" + //
                                 "Final list: " + integerList.list);
@@ -348,10 +338,10 @@ public class BasicArithmetic<T>{
         }
         if (doubleList.list.size() < 3 && !doubleList.list.isEmpty()) {
             System.out.println("\nFinal list: " + doubleList.list);
-            System.out.println("Sum: " + add(doubleList.list.get(0), doubleList.list.get(1)));
-            System.out.println("Difference: " + subtract(doubleList.list.get(0), doubleList.list.get(1)));
-            System.out.println("Product: " + multiply(doubleList.list.get(0), doubleList.list.get(1)));
-            System.out.println("Quotient: " + divide(doubleList.list.get(0), doubleList.list.get(1)));
+            System.out.println("Sum of " + doubleList.list.get(0) + " and " + doubleList.list.get(1) + " is: " + add(doubleList.list.get(0), doubleList.list.get(1)));
+            System.out.println("Difference of " + doubleList.list.get(0) + " and " + doubleList.list.get(1) + " is: " + subtract(doubleList.list.get(0), doubleList.list.get(1)));
+            System.out.println("Product of " + doubleList.list.get(0) + " and " + doubleList.list.get(1) + " is: " + multiply(doubleList.list.get(0), doubleList.list.get(1)));
+            System.out.println("Quotient of " + doubleList.list.get(0) + " and " + doubleList.list.get(1) + " is: " + divide(doubleList.list.get(0), doubleList.list.get(1)));
         } else if (doubleList.list.size() >= 3 && isDoubleArray((doubleList.list))) {
             System.out.println("\n" + //
                                 "Final list: " + doubleList.list);
